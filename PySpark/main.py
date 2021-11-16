@@ -93,7 +93,7 @@ for i in rename_list:
 out = netflix.select('Título','Gênero','Temporadas','Pré estreia', 'Língua', 'Ativo', 'Status', 'Data Inclusão', 'Data de Alteração')
 
 
-out.coalesce(1).write.mode('overwrite').option("header","true").option("sep",";").csv('PySpark/out') #se gravado em hdsf
+out.coalesce(1).write.mode('overwrite').option("header","true").option("sep",";").csv('PySpark/out') #par gravar em hdsf
 df = out.toPandas()
-df.to_csv('PySpark/out.csv', sep=';', index=False) # se gravado direto no ambiente onde o python esta rodando
+df.to_csv('PySpark/out.csv', sep=';', index=False) # para gravar direto no ambiente onde o python esta rodando
 
