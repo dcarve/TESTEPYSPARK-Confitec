@@ -90,13 +90,10 @@ for i in rename_list:
     netflix = netflix.withColumnRenamed(i[0],i[1])
 
 
-m = netflix.toPandas()
+out = netflix.select('Título','Gênero','Temporadas','Pré estreia', 'Língua', 'Ativo', 'Status', 'Data Inclusão', 'Data de Alteração')
 
 
-netflix.coalesce(1).write.mode('overwrite').option("header","true").option("sep",";").csv('PySpark/out') #se gravado em hdsf
-df = netflix.toPandas()
-df.to_csv('PySpark/out.csv', sep=';', index=False)
+out.coalesce(1).write.mode('overwrite').option("header","true").option("sep",";").csv('PySpark/out') #se gravado em hdsf
+df = out.toPandas()
+df.to_csv('PySpark/out.csv', sep=';', index=False) # se gravado direto no ambiente onde o python esta rodando
 
-
-
-#Não possuo conta na AWS para essa parte 8.
